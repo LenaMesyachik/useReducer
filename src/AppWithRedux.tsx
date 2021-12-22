@@ -59,9 +59,9 @@ function AppWithRedux() {
         dispatch(removeTodolistAC(id));
     }, [])
 
-    function changeTodolistTitle(id: string, title: string) {
+    const  changeTodolistTitle = useCallback((id: string, title: string) => {
         dispatch(changeTodolistTitleAC(id, title))
-    }
+    },[])
 
    const addTodolist = useCallback((title: string) => {
         dispatch(addTodolistAC(title));
@@ -88,15 +88,15 @@ function AppWithRedux() {
                 <Grid container spacing={3}>
                     {
                         todolists.map(tl => {
-                            let allTodolistTasks = tasks[tl.id];
-                            let tasksForTodolist = allTodolistTasks;
 
-                            if (tl.filter === "active") {
+                            let tasksForTodolist = tasks[tl.id];
+
+                    /*        if (tl.filter === "active") {
                                 tasksForTodolist = allTodolistTasks.filter(t => t.isDone === false);
                             }
                             if (tl.filter === "completed") {
                                 tasksForTodolist = allTodolistTasks.filter(t => t.isDone === true);
-                            }
+                            }*/
 
                             return <Grid item>
                                 <Paper style={{padding: "10px"}}>
